@@ -1,6 +1,6 @@
 # XPIN-VIDEO · 整合进度 / 续接入口
 
-更新：2026-10-10 · **v1.5.6 P11 Xpin 增量整合完成** · **只做整合，真实制作/实测由用户负责。**
+更新：2026-10-10 · **v1.5.7 P12 GPT 来源去重与增量整合完成** · **只做整合，真实制作/实测由用户负责。**
 
 ## 不变约定
 
@@ -96,7 +96,7 @@ V3/V4 本轮仅确认了目标 Library 文件夹的可见性，**没有读到文
 | 顺序 / 状态 | 来源和重点 | 结束条件 |
 |---|---|---|
 | **P11 ✓** | [Xpin](https://github.com/kzz-x/Xpin)：差点动效 Motion/视觉/技术配方、资产调度、16 张风格卡及参考图 | 文本与参考图的代表性核验已完成，增量合入 02/03；原视频不在仓库中，剩余高清原图按需查看 |
-| **P12 □** | [GPT](https://github.com/kzz-x/GPT)：后期、Vibe Motion、视觉模板 `knowledge/*` 知识卡/失败库；旧动效 Pro 与源索引 | 只吸收 Xpin/旧后期仓尚无的案例经验，过滤镜像和年代较早的 SOP |
+| **P12 ✓** | [GPT](https://github.com/kzz-x/GPT)：后期、Vibe Motion、视觉模板 `knowledge/*` 知识卡/失败库；旧动效 Pro 与源索引 | 已抽取真实编辑/AI 连续性增量并修改 02/04，验证镜像/Pro 实际能力边界；不复制旧架构 |
 | **P13 □** | Google Drive / Library：`favorites_2026_9_6.html`、差点动效融合卡、差点创意/视觉总监资料、`Kai Motion Knowledge` | 找到可核对的高质量源作品与可用动作描述；归纳少量差点灵感输入/检索方法 |
 | **P14 □** | 用户已有项目案例：能实际读取的 Hairline、Marathon、X-Ray、Xtacking、Photon、5G-A、DIY PC 等文件与复盘 | 区分真实工程、半成品、单次概念与经用户验证的做法；沉淀通用失败/成功规律，不虚称实测 |
 | **P15 □** | 外部镜头配方库 [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) / [video-talkcraft](https://github.com/Vincentwei1021/video-talkcraft)：卡索引、样片、实现源码与适配边界 | 检查卡片→预览→源码的对应链，只学机制/命门/可替换项，不复制整套卡片 |
@@ -113,10 +113,20 @@ V3/V4 本轮仅确认了目标 Library 文件夹的可见性，**没有读到文
 
 **刻意不搬：** 默认强制风格 000、固定 30fps/6–8s、运动百分比模板、16 张风格卡全文、无来源或不可商用的原图、原始大 JSON/编辑器参数/固定文件树、大型检查表/长 Prompt、旧 Agent 测试目录与用户本机路径。源图库主要作为维护时的视觉判断依据；生产依然自包含。**P11 已按「代表性图像 + 全类文本 + 差异整合」的计划范围结项**，不代表 77 张其余原图逐张高清核验，也不代表真实动态复刻/渲染验证。
 
+**P12 GPT 深挖（本轮完成）：** 当前 GitHub 树显示 437 个文件，核对 4 类 `knowledge/{ai-post-production,editing,vibe-motion,visual-template}` 的全部 16 份核心知识卡/决策/失败/来源索引，另复核动效参考站点、仓库级能力/迁移索引、旧动效 WORKFLOW/EXPERIENCE/EVALS/EXAMPLES/TEMPLATES/源对照，及 `【差点动效-Pro】` AGENTS、两份主说明、工程数据协议、Keyframe/Project IO、6 个模板 manifest、HTML/Remotion/HyperFrames 适配器实现与说明，读取 6 份早期 `CD_001–006` 风格卡。旧仓约 437 个文件不是「437 份已全文读完」；旧 archive、全部生成导出/源码模块与所有风格说明未逐个全文验收。
+
+**去重事实：** 通过两个 GitHub 仓的文件树 SHA 核验，GPT `【差点后期】/【差点风格】/参考图` 109 张 JPG **109/109 与 P11 Xpin 对应参考图字节相同**；不重复挖图。GPT 六套 `CD_001–006` 风格卡参考图片目录为空（`.gitkeep`），多为旧的风格描述与 Prompt，不是另一套经过作品核验的视觉案例；其余早期 SOP 与 P8/P11 重复为主。
+
+**真正增量：** `02-direction.md` 在复杂 AI 连续片段用少量入口/主构图/运动变化/出口帧组织短段，不赌一次长生成；`04-finish.md` 把 A-roll/口播清理作为全片剪辑时间线骨架、实拍/录屏/CGI 再分层插入，同时保留读图时长；录设备/软件先清屏并关通知、核文字可读性，交付视频先本地真实检查再上传共享盘/NAS。均为旧 `knowledge/editing`、`ai-post-production` 的实际经验增量，非本轮软件实测。
+
+**Pro 真实范围：** 仓内存在 React/TypeScript 工程、图层/控件/逐帧 JSON/关键帧逻辑和基础导出脚本；`src/exporters/remotion/README.md` 明说主要支持 solid/shape/text 与基础数字曲线，`src/exporters/hyperframes/README.md` 说明 GSAP 时间线仍为占位；脚本预设入口读取示例工程，不能宣称任意 Three/粒子/外来 HTML 可无损互导、透明视频输出已经通过。它是工具原型/研发参考，不把大型编辑器协议或全部控件设为 XPIN-VIDEO 生产强制项。
+
+**没有移植：** 旧强制每镜 4 图或三段生成、固定 fps/样片时长、按阶段堆 v001–v005 文件、每镜三套方案、繁琐质检评分、所有图层控件化、旧 Agent 目录/路径及早期 README 迁移约定。旧资料多为说明与部分代码，**没有本轮 Windows/真实 PR/AE/浏览器/视频导出验证**。P12 以覆盖预定高价值来源和去重结项，非整个 GPT 仓库逐文件全文审查。
+
 **历史未解：** P10b Library `/差点后期V3`、`/差点后期V4` 原始文件尚不可读，留待实际取得；不凭空补。独立「差点灵感」Agent/卡库的建设不作为 XPIN-VIDEO 文档整合已完成项。
 
 ## 下轮新对话可直接复制
 
-「继续 `kzz-x/XPIN-VIDEO` 的 P12。先读 `PROGRESS.md`；P11 已完成，下一项深挖 `kzz-x/GPT` 的 `knowledge/*` 知识卡/失败记录、动效 Pro 与来源索引，先核与 Xpin/旧差点后期重复程度，再只提取真正可跨任务复用的增量。每轮读真实文件、核验、提交、更新进度；不复制资料库、不外挂仓库、不做软件实测。」
+「继续 `kzz-x/XPIN-VIDEO` 的 P13。先读 `PROGRESS.md`。P11、P12 已完成；下一项优先深挖 Google Drive/Library 的 `favorites_2026_9_6.html`、差点动效融合卡、差点创意/视觉总监与 `Kai Motion Knowledge`，把可核验的真实原作、动效机制及可复用方法从旧提示词与资源清单里筛出来。仍只改现有 01–04 的高价值增量，更新进度；不建外挂依赖、不做软件实测。」
 
 维护原则：判断经验是否跨任务成立、是否比已有句子更好、是否明显减少返工。**符合才写；否则留作来源或案例。**
