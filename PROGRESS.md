@@ -1,6 +1,6 @@
 # XPIN-VIDEO · 整合进度 / 续接入口
 
-更新：2026-10-10 · **v1.5.9 P14 自有案例与真实验收边界整合完成** · **只做整合，真实制作/实测由用户负责。**
+更新：2026-10-10 · **v1.5.10 P17 多镜 Agent 机制去重整合完成** · **只做整合，真实制作/实测由用户负责。**
 
 ## 不变约定
 
@@ -99,9 +99,9 @@ V3/V4 本轮仅确认了目标 Library 文件夹的可见性，**没有读到文
 | **P12 ✓** | [GPT](https://github.com/kzz-x/GPT)：后期、Vibe Motion、视觉模板 `knowledge/*` 知识卡/失败库；旧动效 Pro 与源索引 | 已抽取真实编辑/AI 连续性增量并修改 02/04，验证镜像/Pro 实际能力边界；不复制旧架构 |
 | **P13 ✓** | Google Drive / Library：个人收藏、差点动效融合卡、创意/视觉总监资料、`Kai Motion Knowledge` | 已评估可见源与复用边界并融入 01/02/03；收藏原片多未能访问，不能标记为已观看的案例 |
 | **P14 ✓** | 自有案例 Hairline、Marathon、Xtacking、PHOTON、5G-A、DIY PC 与 X-Ray 候选 | 已核对可读工程/复盘/报告并将预设状态、实验晋升、验收分级压入 03/04；X-Ray 独立源码未定位，真实目标设备仍待用户实测 |
-| **P15 □** | 外部镜头配方库 [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) / [video-talkcraft](https://github.com/Vincentwei1021/video-talkcraft)：卡索引、样片、实现源码与适配边界 | 检查卡片→预览→源码的对应链，只学机制/命门/可替换项，不复制整套卡片 |
-| **P16 □** | [vibemotion-lab](https://github.com/kzz-x/vibemotion-lab)：不同日期的 Benchmark、Styleboard、实现、审片与 `rejected` | 从具体成功与失败记录提炼导演与质量判断；不把提案当成片 |
-| **P17 □** | [chadian-video-agent](https://github.com/kzz-x/chadian-video-agent)：任务状态、依赖/并行、恢复、真实验收范围 | 只把对逐镜协作确有帮助的轻规则加到 01/03/04；完整调度器不塞进 Markdown |
+| **P15 → 跳过** | 外部镜头配方库 [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) / [video-talkcraft](https://github.com/Vincentwei1021/video-talkcraft) | **2026-10-10 用户明确要求跳过**；不继续本阶段、不计为研究完成 |
+| **P16 → 跳过** | [vibemotion-lab](https://github.com/kzz-x/vibemotion-lab) 的 Benchmark、Styleboard 和失败复盘 | **2026-10-10 用户明确要求跳过**；不继续本阶段、不计为研究完成 |
+| **P17 ✓** | [chadian-video-agent](https://github.com/kzz-x/chadian-video-agent)：依赖/并行、结果恢复、审核与版本证据 | 已按实际代码、状态报告和测试范围去重，仅向 01/03/04 加极少量规则，不迁 Python 调度器 |
 | **P18 □** | [XPIN-Blender-Skill](https://github.com/kzz-x/XPIN-Blender-Skill)、Library AE/Blender 专项与早期 WorkBuddy 镜像 | 做增量差异核对，主要补此前 P6/P9 未覆盖内容；相同规则不二次搬运 |
 | **P19 □** | 最终压缩与缺口审查 | 清理四个阶段内重复/冲突；只在 PROGRESS 留来源历史；列明用户实测项，停止无限扩充 |
 
@@ -143,10 +143,16 @@ V3/V4 本轮仅确认了目标 Library 文件夹的可见性，**没有读到文
 
 **本轮仅吸收的两组通用增量：** `03-production.md` 补“复杂模式先代表镜头独立验证→晋升共享底座”、以及“每个预设的初始状态与覆盖顺序必须明确、导航从当下可见状态接入，Seek/暂停不遗留旧预设状态”；`04-finish.md` 补“构建/交互/GPU 实际画面/下载解码/目标机性能分别记证据，不能用编译或 Blob 冒充成片”。其他成果已经被 01–04 覆盖，故没有重复存入技术规范、很长的 QA 表或专项数值。**本轮不代替用户做软件实测。**
 
+**P17 chadian-video-agent（本轮完成；用户明确跳过 P15/P16）：** 读取该仓当前 GitHub 源码树及 `README.md`、`STATUS.md`、`TEST_REPORT.md`、`ARCHITECTURE.md`、`docs/TASK_ENGINE.md`、`docs/PRODUCTION_LOOP.md`、`docs/PROJECT_OPERATIONS.md`、`docs/CAPABILITY_REGISTRY.md`、`docs/PHASE_1_TEST_REPORT.md`、`docs/PHASE_2_TEST_REPORT.md` 等；重点复核 `core/orchestrator/engine.py`、`plans.py`、`queue/model.py`、`state/{project,shots}.py`、`production/{workflow,media}.py`、`router/{route,health}.py` 与状态机。实际代码可核：任务依赖 DAG（独立分支可并行，失败阻塞依赖支线）；独立尝试目录与 token、输入/输出 SHA/大小及收据；已完成不重做，中断后优先回收完整收据，拒绝迟到旧结果；镜头只有 Preview 不等于 PASS/FINAL，审核绑定当前产物指纹和抽帧证据，拒绝错版；返工产生新任务版本，不覆盖旧版、下游依赖已引用时阻止静默替换。此处核查是**源码和既有测试报告阅读，未在本轮执行单元/真实视频测试**。
+
+**已核测试边界：** 仓库 `STATUS.md` 标为 v0.4.0-dev.2，PHASE 3 **仍未完成**。仓库报告声称 Linux/Python 3.12 有 PHASE 1 的 20-task 中断/恢复验收、PHASE 2 的路由测试，PHASE 3 的 69 项自动测试和 4 秒、1280×720、24fps 的无声图片镜头返工样片，且有少量 FOUND_FOOTAGE 真实素材进展；但 Remotion 真正渲染仍受环境/权限阻塞、三类镜头全链路尚未通过，Windows/macOS、生产级声音/付费模型/实际用户终审未验证。仓内 `README`、`TEST_REPORT`、`PRODUCTION_LOOP` 对 Remotion 依赖安装状态记载较旧，与 `STATUS` 版本不同，应以具日期/证据的最新状态和实际运行结果为准，不以安装或代码存在认定生产可用。**不把 chadian-video-agent 自动接入或宣称 XPIN-VIDEO 已实现多 Agent 调度器**。
+
+**仅吸收三个生产通用点：** ① `01-storyboard.md` 对上游共用素材/动作/全局约束变更沿依赖关系复查，不盲目全片重做；② `03-production.md` 对失败、中断、超时先核可用旧产物/版本，完整则接续，必要返工保留新旧版本和原因，禁止迟到旧结果覆盖；③ `04-finish.md` 审核绑定当前文件/镜头版本，返工必须重审，旧版 PASS 不可套用。原仓的锁文件/重试次数/Schema、项目目录树/能力注册/成本估算及 CLI 属工具实现细节，不移植。依旧坚持「主 Agent 一份全局 Brief，镜头子任务轻量执行，最后由真实成果与用户审核收口」，不向用户要求命令行操作。
+
 **历史未解：** P10b Library `/差点后期V3`、`/差点后期V4` 原始文件尚不可读，留待实际取得；不凭空补。独立「差点灵感」Agent/卡库的建设不作为 XPIN-VIDEO 文档整合已完成项。
 
 ## 下轮新对话可直接复制
 
-「继续 `kzz-x/XPIN-VIDEO` 的 P15。先读 `PROGRESS.md`，P14 已结项。深挖 `Vincentwei1021/video-shotcraft`、`video-talkcraft` 的真实镜头卡、动态预览、源码和适配边界；只选具备卡片→预览→代码证据的机制，比较 02/03/04 后精简整合，提交并更新进度。不复制镜头库、不外挂依赖、不做软件实测。」
+「继续 `kzz-x/XPIN-VIDEO` 的 **P18**。先读 `PROGRESS.md`；P15/P16 已按用户要求跳过，P17 已完成。对 `kzz-x/XPIN-Blender-Skill`、Library AE/Blender 专项和旧 WorkBuddy 仅做差异核查：找到 01–04 真缺失、通用且可减少返工的内容才精简整合。核验提交并更新进度；不回头执行 P15/16、不新增目录、不代替用户软件实测。」
 
 维护原则：判断经验是否跨任务成立、是否比已有句子更好、是否明显减少返工。**符合才写；否则留作来源或案例。**
