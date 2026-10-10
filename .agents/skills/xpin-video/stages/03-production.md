@@ -8,7 +8,7 @@
 - 新镜头：确认参考、真实结构、画幅及素材。简单镜头即使从零制作，也不强制 Null/CTRL/Rig；只有真实的共享运动、动态关系或复用需求才先搭必要骨架。动效应先明确谁跟随、携带、指向谁，以及整体/局部运动分别由谁控制，不能靠多层复制近似关键帧假同步。
 - 模板化与普通修改不同：源工程/正式模板保持只读，另建模板开发副本并核对字体、插件、贴图、模型、音频等必要依赖与许可；缺失依赖先报告影响，不擅自删效果/换插件；用户当前工作文件路径不改变。执行能力以实际可用工具为准；未连接 AE/Blender 不声称已操作。问题出现再查相应文档或故障，不为了「完整」预读无关源码。
 
-## 按媒介直接做（规则已内置，无需跳旧仓）
+## 按媒介制作
 
 - **AE｜二维、2.5D、字幕/图表/合成：** 少量对象优先原生 Shape/Text/Animator、Mask/Matte、Repeater、关键帧；有共享运动才用 Null/Parent/Precomp/Controller，复杂关系用表达式或 JSX/MCP。修改「选中层」必须现场读选区。中文图层/控件，底层 API 保持稳定标识；不机械套 Easy Ease、不默认文字渐显缩放。使用 Engine Room 时**先开 AE 并确认 MCP，再开 PR**，连接异常先排除 PR 干扰。
 - **Blender｜实体 3D/结构/写实/复杂灯光：** 保留真实对象、Collection、材质与 Action。共享运动用 Empty/Parent/Constraint，调节用 Custom Properties/Driver/Delta Transform，动画用少量关键姿态 + F-Curve；只有需要时做 N Panel、Geometry Nodes、Camera/Focus Rig。除烘焙/模拟外避免逐帧 Transform Key；相机与主体互相配合，复杂路径允许留给人工微调。
