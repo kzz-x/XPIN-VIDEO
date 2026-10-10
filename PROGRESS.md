@@ -1,6 +1,6 @@
 # XPIN-VIDEO · 整合进度 / 续接入口
 
-更新：2026-10-10 · **v1.4 差点后期仓深挖版** · **只做整合，真实制作/实测由用户负责。**
+更新：2026-10-10 · **v1.5 差点 AE 仓深挖版** · **只做整合，真实制作/实测由用户负责。**
 
 ## 不变约定
 
@@ -17,7 +17,8 @@
 - [x] P6：Library 动画升级 v5、分镜 Agent、日常复盘和旧 AE/Blender 仓库核心经验提纯。
 - [x] P7：查 `/Daily Review` 2026-09-17—10-09 共 23 份记录，过滤高价值生产原则。
 - [x] **P8（本轮）**：全面盘点 [差点后期旧仓](https://github.com/kzz-x/chadian-post-GTP-project) 的当前文件树；重点研究主 `skill/SKILL.md`、`skill/references/` 的 **20 个直接参考文件**、**000–017 共 18 张风格卡**、`skill/evals/evals.json`、项目说明/状态/交付约定。只提炼 XPIN-VIDEO 尚无的短规则，修改 01–04 阶段文件，**主 `SKILL.md` 不变、无外挂仓库依赖**。
-- [ ] **P9（下一步，仍仅整合）**：如继续深挖，比较 Library `/差点后期V3`、`/差点后期V4`、`/差点素材` 与 P8 所读旧仓的**实际差异**；选能减少真实制作返工的新增经验，只修改现有 4 个 stage。专门的资产目录/风格案例若有必要则交由独立资产库维护，不灌进 Core。
+- [x] **P9（本轮）**：深挖 [XPIN-AE-SKILL](https://github.com/kzz-x/XPIN-AE-SKILL) 的当前仓库结构与 Mini / Full 入口，针对工程架构、关系 Rig、视觉反馈、口播、模板、MCP/JSX、动画验收等取得并筛选约 27 份核心文件。只增补现有 02/03/04，主 Skill 不变；未遍历旧 archive 全文，亦未运行 AE/Codex。
+- [ ] **P10（下一步，只做整合）**：对比 Library `/差点后期V3`、`/差点后期V4`、`/差点素材` 与 P8 旧仓的增量价值；仅收留能减少返工的新原则，继续压缩既有阶段规则。不建立外挂、不执行实测。
 
 ## P8 真正吸收的内容
 
@@ -37,8 +38,21 @@
 - 旧仓封面精确配额、完整项目状态文件树、全部参数/面板规范、极长媒介 QA 清单、临时问题/故障说明均不作为每镜必须执行的负担。
 - `skill/evals/evals.json` 是旧仓的行为预期集，**不是** XPIN-VIDEO 的真实软件测试结果。
 
+## P9 差点 AE 深挖：新吸收与舍弃
+
+**读到的核心：** 最新 `AGENTS.md`、Mini/Full SKILL、Project Context Map、Editable Engineering Gate、Motion Control Architecture、Relationship Rigs、Speech-Driven Motion、AE Implementation/Build Spec、Visual Anchor/Feedback Loop、Creative Authority、Control Surface、Learn AEP、Refactor/Style Pack、动画 QA、原生 AE 和 JSX/Undo 等。
+
+**新增到 XPIN-VIDEO：**
+- `02-direction.md`：技术/视觉路由增加 AI 适配度判断；规则化、重复、可验证的任务可直接交 AI，构图/Graph/Taste 主导的 Motion 应先由人或参考锁定关键意图；**不能按“从零/对象多”机械判断难度**。
+- `03-production.md`：简单新镜头不强迫搭 Null/CTRL/Rig；**共享 Motion 上移、独特 Motion 保持局部、人工 Offset 与原动画分离**；Attach/Carry/Follow/Target/动态布局先建立真实关系，不复制近似关键帧；有价值的主 Motion 留 Graph，人可微调；既有 CTRL 先复用、模板控件需易找和 Reset；MCP/JSX 失败或超时先读状态，再决定补丁，不盲重复执行；长期工程可维护几百字的合成/控件/素材/依赖/人工区 Fast Path 索引，工程真实状态优先。
+- `04-finish.md`：截图优先围绕 Marker、动作峰值与 Hold 取代表帧；**截图识别症状，工程数据定位原因**，连续速度/错帧与手感仍需要真正播放，不以关键帧代替 Motion 验收。
+
+**处理了一项旧资料内部冲突：** 旧 Editable Gate 文档有“新建完整镜头即可进入重工程化”的表述，但当前仓库顶层 `AGENTS.md` / Full 核心明确“仅因实际关系、复杂 Motion 或复用而触发；简单新建用 Mini”。**采用当前顶层路由，不搬旧宽泛触发条件。**
+
+**刻意未移植：** AE26 ExtendScript 特定坑、Engine Room 的 UndoGroup/Purge 细节、工具 JSON 参数与安装说明、巨大历史工程标准、各种 Motion Primitive 参数表、模板库复杂目录方案、学习 AEP 多卡晋升制度。它们是 AE 专用实现/故障知识，不应扩成 XPIN-VIDEO 的日常规则。本轮并非真正的软件质量验证。
+
 ## 下轮新对话可直接复制
 
-「继续整理 `kzz-x/XPIN-VIDEO`，读取 `PROGRESS.md`、`AGENTS.md`。从 P9 开始，对比 Library 差点后期 V3/V4 与差点素材文件夹的新增价值，去重后只压缩整合当前 4 个 stage。不要外挂 Skill/复制旧仓内容，也不要执行任何视频或软件实测（我自己测试）。完成后更新进度仓库。」
+「继续整理 `kzz-x/XPIN-VIDEO`，读取 `PROGRESS.md`、`AGENTS.md`。从 P10 开始，对比 Library 差点后期 V3/V4 与差点素材文件夹的新增价值，去重后只压缩整合当前 4 个 stage。不要外挂 Skill/复制旧仓内容，也不要执行任何视频或软件实测（我自己测试）。完成后更新进度仓库。」
 
 维护原则：判断经验是否跨任务成立、是否比已有句子更好、是否明显减少返工。**符合才写；否则留作来源或案例。**
