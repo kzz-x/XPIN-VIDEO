@@ -10,8 +10,8 @@
 
 ## 按媒介制作
 
-- **AE｜二维、2.5D、字幕/图表/合成：** 少量对象优先原生 Shape/Text/Animator、Mask/Matte、Repeater、关键帧；有共享运动才用 Null/Parent/Precomp/Controller，复杂关系用表达式或 JSX/MCP。修改「选中层」必须现场读选区。中文图层/控件，底层 API 保持稳定标识；不机械套 Easy Ease、不默认文字渐显缩放。使用 Engine Room 时**先开 AE 并确认 MCP，再开 PR**，连接异常先排除 PR 干扰。
-- **Blender｜实体 3D/结构/写实/复杂灯光：** 保留真实对象、Collection、材质与 Action。共享运动用 Empty/Parent/Constraint，调节用 Custom Properties/Driver/Delta Transform，动画用少量关键姿态 + F-Curve；只有需要时做 N Panel、Geometry Nodes、Camera/Focus Rig。除烘焙/模拟外避免逐帧 Transform Key；相机与主体互相配合，复杂路径允许留给人工微调。
+- **AE｜二维、2.5D、字幕/图表/合成：** 少量对象优先原生 Shape/Text/Animator、Mask/Matte、Repeater、关键帧；有共享运动才用 Null/Parent/Precomp/Controller，复杂关系用表达式或 JSX/MCP。修改「选中层」必须现场读选区；重要目标按稳定 AI_ID＋合成名＋图层名/类型交叉定位，不依赖易变的图层索引。中文图层/控件，底层 API 保持稳定标识；不机械套 Easy Ease、不默认文字渐显缩放。使用 Engine Room 时**先开 AE 并确认 MCP，再开 PR**，连接异常先排除 PR 干扰。
+- **Blender｜实体 3D/结构/写实/复杂灯光：** 保留真实对象、Collection、材质与 Action。共享运动用 Empty/Parent/Constraint，调节用 Custom Properties/Driver/Delta Transform，动画用少量关键姿态 + F-Curve；只有需要时做 N Panel、Geometry Nodes、Camera/Focus Rig；高频控件值保存在 .blend 的 Custom Properties/Driver 等原生数据中，面板是入口、不是唯一状态源。除烘焙/模拟外避免逐帧 Transform Key；相机与主体互相配合，复杂路径允许留给人工微调。
 - **HTML / Three.js / WebGL｜实时可调、技术渲染与信息动效：** 场景、控制、时间轴和输出分离；新复杂效果先以代表镜头独立验证，达标后再接入共享 Camera/Timeline/Recording，不把实验模式直接塞进主模板；组合不同效果时隔离 CSS/全局变量、保留主效果的视觉与节奏。保持单一时间源，同一时间 `t` 的 Camera、模型、标注、特效状态可重复求值，随机粒子/纹理也须固定种子或按 `t` 重建。提供本任务真正需要的可调图层/关键帧、Marker、拖动时间线、播放/暂停、保存与重开；**进度条不等于关键帧编辑，localStorage/导出参数不等于完整可重开工程**。实际能修改什么就交付什么，导出尽量确定性逐帧；编辑视图与纯画面录制分别按目标画幅核对，控件不得挤压/遮挡舞台，默认预览不应停在无意的空白帧。用户要单 HTML 优先交单文件；外部字体、CDN、模型等运行依赖须固定可用版本并留离线替代，避免交付后缺字/黑屏；内部职责复杂或反复修改互相污染时允许模块化开发，再提供便携单文件产物。
 - **数据 / 图表 / 信息动效：** 真实数值集中于一份可替换数据源，记录出处、时间范围、单位、测试条件及实测/预测属性；数值、标签和图形从同一源生成。柱图不歪曲零基线、折线不把缺失值当零、百分比/百分点/倍率不混用，不为填满画面编数据。
 - **真实素材 / 独立元素 / AI 片段：** 使用 02 已确认的候选与准确文件；素材类保留来源/风险，元素类保留独立 Alpha/图层/轴心，生成片段不承担必须精确的品牌字、数字或可编辑交互。没有关键准确资产先补，不能用假结构顶替；导入 GLB/可复用组件须实际检查层级、轴心、动画 Clip、贴图与替换接口，尤其区分科普示意与厂商真实结构。
