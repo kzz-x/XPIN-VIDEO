@@ -1,6 +1,6 @@
 # XPIN-VIDEO · 整合进度 / 续接入口
 
-更新：2026-10-10 · **v1.5.10 P17 多镜 Agent 机制去重整合完成** · **只做整合，真实制作/实测由用户负责。**
+更新：2026-10-10 · **v1.5.11 P18 Blender / AE / WorkBuddy 差异核验完成** · **只做整合，真实制作/实测由用户负责。**
 
 ## 不变约定
 
@@ -102,7 +102,7 @@ V3/V4 本轮仅确认了目标 Library 文件夹的可见性，**没有读到文
 | **P15 → 跳过** | 外部镜头配方库 [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) / [video-talkcraft](https://github.com/Vincentwei1021/video-talkcraft) | **2026-10-10 用户明确要求跳过**；不继续本阶段、不计为研究完成 |
 | **P16 → 跳过** | [vibemotion-lab](https://github.com/kzz-x/vibemotion-lab) 的 Benchmark、Styleboard 和失败复盘 | **2026-10-10 用户明确要求跳过**；不继续本阶段、不计为研究完成 |
 | **P17 ✓** | [chadian-video-agent](https://github.com/kzz-x/chadian-video-agent)：依赖/并行、结果恢复、审核与版本证据 | 已按实际代码、状态报告和测试范围去重，仅向 01/03/04 加极少量规则，不迁 Python 调度器 |
-| **P18 □** | [XPIN-Blender-Skill](https://github.com/kzz-x/XPIN-Blender-Skill)、Library AE/Blender 专项与早期 WorkBuddy 镜像 | 做增量差异核对，主要补此前 P6/P9 未覆盖内容；相同规则不二次搬运 |
+| **P18 ✓** | [XPIN-Blender-Skill](https://github.com/kzz-x/XPIN-Blender-Skill)、Library AE 专项与 WorkBuddy 旧资料 | 核对真实原文与重复率；仅往 03 加稳定 AE 目标定位、Blender 控件数据持久化两项，未复用旧 SOP |
 | **P19 □** | 最终压缩与缺口审查 | 清理四个阶段内重复/冲突；只在 PROGRESS 留来源历史；列明用户实测项，停止无限扩充 |
 
 **P11 首批（已完成）：** GitHub 树显示 Xpin 296 个文件，`【差点风格】/参考图` 有 109 张 JPG + 1 个 `.nomedia`，另有 16 张文字风格卡。已读取约 25 份具代表性的资产路由、Motion、摄影机、模板、技术/视觉规范及旧测试与来源审计文本；多数与 v1.5.4 重合。**仅将两条真实增量写入 `03-production.md`：按最早发生的问题层级修订；HTML 外部依赖固定版本并备离线方案。** 此段为第一批历史记录；后续 P11 追加检查见下。旧仓测试协议不是本轮实测。
@@ -149,10 +149,16 @@ V3/V4 本轮仅确认了目标 Library 文件夹的可见性，**没有读到文
 
 **仅吸收三个生产通用点：** ① `01-storyboard.md` 对上游共用素材/动作/全局约束变更沿依赖关系复查，不盲目全片重做；② `03-production.md` 对失败、中断、超时先核可用旧产物/版本，完整则接续，必要返工保留新旧版本和原因，禁止迟到旧结果覆盖；③ `04-finish.md` 审核绑定当前文件/镜头版本，返工必须重审，旧版 PASS 不可套用。原仓的锁文件/重试次数/Schema、项目目录树/能力注册/成本估算及 CLI 属工具实现细节，不移植。依旧坚持「主 Agent 一份全局 Brief，镜头子任务轻量执行，最后由真实成果与用户审核收口」，不向用户要求命令行操作。
 
+**P18 Blender / AE / WorkBuddy 差异核验（本轮完成）：** 全文读取 `XPIN-Blender-Skill` 所有 **10** 份 Markdown（Mini/Full、Motion Rig、Engineering Gate、控件、模板、场景架构、Visual Anchor、AGENTS/README），对照目前 03 阶段：Parent/Empty、F-Curve、Driver、Delta Transform、N Panel、少量主 Key、复杂运镜保留人工精修及资产/Visual Anchor First **均已覆盖**。Library 阅读 `/after-effects-engineering/references/quick-checklist.md`（59 行）、`/差点AE/references/00_core-invariants.md`（46 行），检查 AE v1.4 工程规范开头的 MCP/JSX/Hybrid、目标定位与资产规则，并盘点差点 AE 相关分组；**AE v1.4 共 2159 行，没有本轮逐行全部重读**，此前 P6/P9 已有专项整合，不能虚称全文新审。
+
+旧 `workbuddy` 仓 135 个文件，43 份 Markdown；与 `GPT`、`Xpin` 两仓 Git blob SHA 对比各有 **92** 个文件一致（主要是同一批 JPG），非 135 份都必须重读。针对性读取 WorkBuddy 入口与动效、素材、封面、片段、元素、风格 SOP 及旧 `workbuddy-memory` 的部分路由、分镜与动效提示词。旧强制多轮审批、固定配色/时长、每段必须动效、指定老模型、无视版权/许可、默认 Downloads 文件树、长提示词等与当前目标冲突或已过时，全部**不导入**。
+
+**唯一增量写入 `03-production.md`：** AE 实际工程目标使用 AI_ID＋合成名＋图层名/类型多重确认，不靠易变图层序号；Blender N Panel 只是控件入口，核心参数随 .blend 的 Custom Properties/Driver 等原生数据保存，不依赖仅存于脚本的临时状态。其它与已有四阶段重合的知识不重复搬运；没有 AE/Blender 实机修改、重新渲染或用户使用验收。P18 按「差异核验」范围结项，而非旧仓所有文件逐一全文阅读。
+
 **历史未解：** P10b Library `/差点后期V3`、`/差点后期V4` 原始文件尚不可读，留待实际取得；不凭空补。独立「差点灵感」Agent/卡库的建设不作为 XPIN-VIDEO 文档整合已完成项。
 
 ## 下轮新对话可直接复制
 
-「继续 `kzz-x/XPIN-VIDEO` 的 **P18**。先读 `PROGRESS.md`；P15/P16 已按用户要求跳过，P17 已完成。对 `kzz-x/XPIN-Blender-Skill`、Library AE/Blender 专项和旧 WorkBuddy 仅做差异核查：找到 01–04 真缺失、通用且可减少返工的内容才精简整合。核验提交并更新进度；不回头执行 P15/16、不新增目录、不代替用户软件实测。」
+「继续 `kzz-x/XPIN-VIDEO` 的 **P19 最终压缩与缺口审查**。先读 `PROGRESS.md`，确认 P15/P16 依用户要求跳过、P17/P18 已结项。审查主 `SKILL.md` 与 01–04 阶段的重复、冲突、字数/认知负担；优先删改、合并而非继续加条目。列明真正未验证的用户软件实测项与资料缺口，完成后提交并读回核验，更新进度。**不要恢复跳过的 P15/P16，不新建文件/外挂仓库，不擅自运行 AE/Blender/PR 实测。**」
 
 维护原则：判断经验是否跨任务成立、是否比已有句子更好、是否明显减少返工。**符合才写；否则留作来源或案例。**
