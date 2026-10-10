@@ -1,31 +1,64 @@
-# XPIN-VIDEO · 整合进度 / 续接入口
+# XPIN-VIDEO · 进度与跨对话续接
 
-更新：2026-10-10 · **v1.0 精简版已提交** · 当前状态：文档/路由检查通过；真实 AE/Blender/HTML 制作测试待做。
+更新时间：2026-10-10 · **v1.1 自包含版已写入** · 当前：P5 本地 Web 小样已实测；Windows Codex/AE/Blender 联动仍待测试。
 
-## 任务进度
+## 先看这一条：不再外挂旧仓库
 
-- [x] **P0 盘点**：确认新仓库与旧版后期、AE、Blender、视频 Agent、VibeMotion Lab 来源；检索 Library 动画升级与 PHOTON/Xtacking 复盘。
-- [x] **P1 提炼**：保留视觉第一、反向专业术语检索、Reference/Asset First、三轮收敛、全片规划/逐镜制作、工程安全、控件、时间轴、渲染质量。删除重复说明和大型架构。
-- [x] **P2 落地**：`AGENTS.md` + `.agents/skills/xpin-video/SKILL.md` + 4 个阶段按需文件 + `README.md`。Skill 主文件仅约 1.4k 字符；不复制旧仓完整规则。
-- [x] **P3 交叉核对**：逐项覆盖（三维/二维/素材）、问卷、参考视频/Banana、差点元素、短 P2 提示词、原位工程异地备份/局部保护、实时控件、音频/Marker、关键帧→低清预览、三档质量、估时/后台渲染。
-- [x] **P4 路由静态检查**：已从 GitHub 回读验证全部 8 个文件及 SKILL frontmatter，路径正确；以 `（三维）准确设备结构 → 参考+3D资产 → 专用 Blender/HTML/AE`、`（二维）RAM 隐喻 → 参考+AE/HTML`、`（素材）发布会 → 官方真实视频` 模拟三条路由。**这不是实际生产运行测试。**
-- [ ] **P5 真实试运行（下一步，优先）**：拿一段 3 镜头文稿，GPT 给分镜→锁关键帧/资产→Codex 制作其中 1 个 S/A 镜头→测试控件、Marker、异地备份与低清预览；记录耗时、参考匹配与修改回归。
-- [ ] **P6 小幅迭代（视试运行结果）**：只修真实失败点；成熟可调用模板/元素/素材索引可放在外部专用库，主 Skill 不继续长胖。
+用户 2026-10-10 明确纠正：**不要把 XPIN-VIDEO 做成其他 Skill 仓库的路由/外挂。** 已重新提炼旧差点后期、AE Mini/Full、Blender Mini/Full、素材/元素/AI 片段/动效规则，将有效核心**内置于本仓 4 个 stage 文件**。
 
-## 新对话直接复制
+- [x] `AGENTS.md` / `SKILL.md`：不再要求安装或运行时读其他 Skill。
+- [x] `02-direction.md`：内置 Reference/Asset First、真实素材、事实来源与授权标记、独立元素生成和 AI 片段。
+- [x] `03-production.md`：内置 AE、Blender、HTML 路线、原目录外完整备份、只改要求范围、关系 Rig、控件、Marker/时间线、Motion、QA。
+- [x] `04-finish.md`：内置音乐音效/口播剪辑、关键帧→低清→成片三档、实测估时与后台渲染规则。
+- [x] 从 GitHub 回读 7 份生产文件：**没有外部 GitHub Skill 路由链接**，并且阶段相对路径存在。旧仓库只作为过往提炼来源；未来生产任务禁止自动转读旧仓。
 
-「继续 `kzz-x/XPIN-VIDEO` 的差点视频 Skill 整合。先读仓库 `PROGRESS.md` 和 `AGENTS.md`；完成下一个未勾选阶段 P5，测试有证据后再只修改必要规则。不要重读全部旧仓库，也不要堆新结构。每次做完更新 PROGRESS.md 并提交。」
+## 阶段结果
 
-## 关键来源（仅维护时查阅，生产不预读）
+- [x] P0–P4：旧仓核心来源与 Library 关键经验提炼、结构收敛、主 Skill 与四阶段编写、路由静态检查。
+- [x] **P5a：3 镜头小样、HTML 单镜头的实际运行与导出**，结果如下。
+- [ ] **P5b：在用户机器的 Codex 项目中验证**：实际运行本仓 Skill → 对已有 AE/Blender 工程做异地备份与局部 Patch → 原位打开 → 真实 Marker/控件调整 → 关键帧/预览 → 视觉参考 Match。此次环境无用户 Windows/AE/Blender/Codex 控制连接，不能虚构完成。
+- [ ] P6：基于 P5b 的真实失败点对现有规则**替换/压缩**，而不是新增大型规范。
 
-- [差点后期](https://github.com/kzz-x/chadian-post-GTP-project)：`skill/SKILL.md`、`skill/references/{post-details,reference-first,asset-first,prompt-writing,motion-v5,project-state}.md`，素材/元素/片段独立模块。
-- [差点 AE](https://github.com/kzz-x/XPIN-AE-SKILL) / [差点 Blender](https://github.com/kzz-x/XPIN-Blender-Skill)：`AGENTS.md` 的 Mini/Full 和 Read Before Write。
-- [差点视频 Agent](https://github.com/kzz-x/chadian-video-agent)：`SKILL.md`，项目进度及任务恢复理念；不可把尚未验证的 Worker 能力当成已接通。
-- [VibeMotion Lab](https://github.com/kzz-x/vibemotion-lab)：Hero Reference / Render / QA 方法。
-- Library：《差点动画升级-Skill-v4.md》《屏幕互动模板开发复盘与避坑指南.docx》《Xtacking三维动效制作复盘与避坑指南.docx》及 AE Skill。
+## P5a 最小案例与实测证据
 
-## 维护边界
+三镜头短稿，用于模拟 GPT 全局路由、单镜头制作：
 
-本轮**重点研读相关主规范/关键 reference 和核心复盘**，未逐个精读所有旧风格文件、细分能力及 Library 历史档案；不将此误称“历史全部文件已完整审核”。未来只有遭遇新任务/真实失败、现有 Skill 不足时，才查相关来源；经验优先合并/替换旧段落而不是新增规则。
+| 镜头 | 模拟原文/目标 | 分类 | 测试范围 |
+|---|---|---|---|
+| S01 | 「你刚打开一个 APP」——看见真实手机界面操作 | （素材）B | 任务卡；真实 UI 资料未提供、尚未检索下载，未执行 |
+| S02 | 「程序需要的数据，先进入 RAM」——抽象的数据进入处理区域 | （三维）A | 任务卡；没有准确可用模型/参考，不冒充真实芯片结构，未执行 |
+| S03 | 「就像设备干活时的桌面，越大越能同时摊开东西」 | （二维）A | **实际制作 HTML 小样并运行测试** |
 
-本仓是可被 Codex 读取的生产指导文件，并非运行程序；尚未在用户 Windows/AE/Blender/HTML 环境做完整端到端测试。下一步必须拿真实项目确认视觉效果、性能和工程保护确实成立。
+S03 不是商业级成片，没有选定目标参考、没有口播音频和授权素材；目的只验证流程、实时可调性和渲染机制。
+
+测试工程（全部单文件，无第三方仓库依赖）：[tests/p5-ram-pilot.html](tests/p5-ram-pilot.html)。
+
+本地 Chromium/Playwright + FFmpeg 2026-10-10 实测：
+- [x] 3 张代表关键帧实际生成。
+- [x] `seek(2.5) → seek(4.8) → seek(2.5)` 的 Canvas 快照二进制一致。
+- [x] 任务数量、发光、缩放实时调节导致画面像素变化；速度参数由 UI 更新，播放路径引用速度（速度的精确计时未做实测）。
+- [x] 4 个 Marker 数据存在、时间线可拖动；**Marker 拖动编辑未实现/未测试**。
+- [x] 60 帧逐帧导出；FFprobe 核实视频 **640×360、12 fps、5.000 s、60 帧**，画面低清预览测试有效。浏览器 canvas 数据截图用时约 **13.53 秒**（此环境，不能推算 AE/Blender 全质量）。
+- [x] 演练已有 HTML 工程的异地备份与单参数 Patch：原文件/备份 SHA-256 相同，修改版本只改变 `taskCount` 默认值且原位置文件内容不变。**此结果不代替 AEP/BLEND 的真实备份回归。**
+- [ ] 用户质量参考对照、真实录音驱动节奏、真实软件交互与 Codex 启动链，尚未验证。
+
+对应产物已保存到 ChatGPT Library `/XPIN-VIDEO/P5/`：HTML 原型、低清 MP4、关键帧 PNG。视频也可通过当前对话临时链接获取。
+
+## 下一步（新对话可直接做）
+
+**优先 P5b，不再进行大规模旧仓内容整合。** 在用户能运行 Codex 与 AE/Blender 时，用本仓 `AGENTS.md`，选用户提供的一个现有工程，按以下验收：
+
+1. 只加载主 Skill 和当前 stage（无需引用其他仓库）。
+2. 原目录外创建可恢复备份，记录原文件路径与备份路径；原文件原位修改。
+3. 只改一个视觉/运动参数，其余关键内容无变化。
+4. 控件实时改变画面；Marker 真实可微调；先关键帧、再 ≤10 分钟低清预览。
+5. 真实查看最终画面与参考差距，记录问题，再有针对性地调整 03/04 的 1–2 条规则。
+
+跨对话续接指令：
+
+「继续 `kzz-x/XPIN-VIDEO`，先读 `PROGRESS.md` 和 `AGENTS.md`。本仓必须**自包含，不允许运行时外挂其他 Skill 仓库**。从 P5b 开始做真实 Codex/AE/Blender 试运行，实测完更新本进度；新增经验优先压缩替换旧规则。」
+
+## 来源维护范围（仅历史，不是运行依赖）
+
+本版已提炼旧差点后期、AE、Blender Mini/Full、素材/元素/AI 动效及 Library 的动画升级、PHOTON/Xtacking 核心复盘；未全量审阅每一份旧风格卡、故障 Adapter 或私人历史资料。出现具体失败再查证，不把一次性 bug 变成永久大规则。
+
