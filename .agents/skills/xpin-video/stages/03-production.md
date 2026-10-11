@@ -12,6 +12,7 @@
 
 - **AE：** 简单图形、UI、字幕优先原生 Shape/Text/Effects、Mask/Matte、关键帧；复杂共享关系再用 Null/Parent/Precomp、表达式或 MCP/JSX。选中对象现场读；重要目标结合 AI_ID、合成名、图层名/类型定位，不依赖图层索引。中文可见命名、底层稳定 API 标识；曲线匹配动作，不机械套 Easy Ease。Engine Room **先开 AE 确认 MCP，再开 PR**，异常先排 PR 干扰。
 - **Blender：** 保留对象、Collection、材质与 Action；共享运动用 Empty/Parent/Constraint，调节用 Custom Properties/Driver/Delta Transform，主动作少量 Key＋F-Curve；除追踪/模拟/烘焙，不用密集逐帧 Transform Key。N Panel 是入口，核心参数须随 .blend 原生保存；Camera/Focus Rig 按需搭建，复杂 Graph 可留给人工精修。
+- **硬件科普解构：** 按需求分阶段交付：先考证并制作结构可信、零件独立、装配正确且可调用内置动画的 GLB，验证层级、轴心、Clip、任意时间定位及拆解复原；再基于同一模型设计科普原理演示、部件交互、镜头与时间线；最后按照参考图或已有渲染器 HTML 整合视觉风格。结构、动画和渲染相互独立，可按当前任务交付任意阶段成果。
 - **HTML / Three.js / WebGL：** Scene、Controls、Timeline、Output 分工；复杂新效果先独立验证再接入共享 Camera/Timeline/Recording，多效果合成隔离 CSS/全局状态。单一时间源驱动相机、模型、标注、特效，随机效果固定种子或按时间可复现，Seek/暂停/录制一致。按任务提供真正可用的关键帧、Marker、时间线与保存重开；**进度条不等于关键帧编辑，localStorage/参数导出不等于完整可重开工程**。编辑界面与纯画面录制分别核画幅、遮挡、默认首帧和逐帧输出。用户要求单 HTML 就交便携单文件；必要时可先模块化开发，外部字体/CDN/模型固定可用版本并备离线方案。
 - **数据与图表：** 一份可替换数据源驱动数值、标签和图形；注明出处、日期、单位、测试条件及实测/预测。不编数，不误导性截断坐标轴，不把缺失当零或混淆百分比、百分点、倍率。
 - **真实素材 / 元素 / AI 片段：** 使用 02 阶段已核的文件，保留来源、风险、独立 Alpha/图层/轴心和可替换接口。GLB 须核层级、轴心、贴图、动画 Clip；示意结构不冒充真实厂商结构。精确文字/数字/品牌信息尽量留在可编辑层。
